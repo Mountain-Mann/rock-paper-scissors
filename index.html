@@ -7,10 +7,24 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1>Hello</h1>
+    <div id="container">
+        <div class = 'title'>
+            <h1>Let's play! Choose your weapon:</h1>
+        </div>
+        <div class="options">
+            <button type="button" id="btn" class="rock">Rock</button>
+            <button type="button" id="btn2" class="paper">Paper</button>
+            <button type="button" id="btn3" class="scissors">Scissors</button>
+        </div>
+        <div id="results">
+            <p></p>
+            <button type="button" class="reload">Reload</button>
+        </div>
+        <div class="score">
+            <div class="playerScore">Player Score: </div>
+            <div class="compScore">Computer Score: </div>
+        </div>
     </div>
-    
 </body>
 <script src="main.js"></script>
 </html>

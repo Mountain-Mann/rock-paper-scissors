@@ -1,3 +1,6 @@
+let compScore = 0;
+let playerScore = 0;
+
 //declare array choices
 const choices = ['rock', 'paper', 'scissors'];
 
@@ -6,31 +9,67 @@ function getCompChoice () {
    selection = choices[Math.floor(Math.random()*choices.length)];
    return selection;
 }
-//get player choice by prompt
-function getPlayerChoice () {
-   let selection2 = prompt('Choose rock, paper, or scissors.');
-   return selection2.toLowerCase();
-}
 
-let playerSelection = getPlayerChoice();
 const computerSelection = getCompChoice();
+
+const rock = document.querySelector('#btn');
+const paper = document.querySelector('#btn2');
+const scissors = document.querySelector('#btn3');
+
+let playerSelection;
+
+rock.addEventListener('click', () => {
+    playerSelection = 'rock';
+    playRound(playerSelection, computerSelection);
+});
+paper.addEventListener('click', () => {
+    playerSelection = 'paper';
+    playRound(playerSelection, computerSelection);
+});
+scissors.addEventListener('click', () => {
+    playerSelection = 'scissors';
+    playRound(playerSelection, computerSelection);
+});
+
+
+const results = document.querySelector('#results');
 
 //declare function to play a round
 function playRound (playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        console.log('It\'s a tie...');
+        results.textContent = 'It\'s a tie...';
     } else if (
         (playerSelection === 'rock' && computerSelection === 'paper') || 
         (playerSelection === 'paper' && computerSelection === 'scissors') || 
         (playerSelection === 'scissors' && computerSelection === 'rock')
-        ) {console.log(`${(computerSelection)} beats ${playerSelection}! You lose...`);
+        ) {results.textContent = `Eh, ${(computerSelection)} beats ${playerSelection}! You lose...`;
     } else if (
         (playerSelection === 'rock' && computerSelection === 'scissors') || 
         (playerSelection === 'paper' && computerSelection === 'rock') || 
         (playerSelection === 'scissors' && computerSelection === 'paper')
-        ) {console.log(`${(playerSelection)} beats ${computerSelection}! You win...`);
+        ) {results.textContent = `Sweet, ${(playerSelection)} beats ${computerSelection}! You win...`;
     } else {
-        console.log('Please try again...');
+        results.textContent = 'Please try again...';
     }
 };
-playRound(playerSelection, computerSelection);
+
+//playRound(playerSelection, computerSelection);
+
+/*
+for (i = 0; i < 5; i++) {
+    playRound();
+    if (results.textContent == `Eh, ${(computerSelection)} beats ${playerSelection}! You lose...`) {
+        compScore = ++compScore;
+    } else if (results.textContent == `Sweet, ${(playerSelection)} beats ${computerSelection}! You win...`) {
+        playerScore = ++playerScore;
+    } else if (results.textContent = 'It\'s a tie...') {
+        //no points
+    }
+}
+*/
+
+const container = document.querySelector('#container');
+
+const score = document.createElement('div');
+score.classList.add('score');
+score.textContent = '`The score is ${} to ${}`';
